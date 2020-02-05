@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Cash In</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="logoSubhead">Invest and Earn</string>
+    <string name="title_activity_main">Main</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="login">Login</string>
+    <string name="Register">Register Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="EmailA">Email Address</string>
+    <string name="Password">Password</string>
+    <string name="SignIn">Sign In</string>
+
+    <!-- Menu strings -->
+    <string name="Profile">Profile</string>
+    <string name="IE">Invest and Earn</string>
+    <string name="PI">Puchase Investments</string>
+    <string name="Messages">Messages</string>
+    <string name="WC">Withdraw Cash</string>
+    <string name="TM">Terms and Conditions</string>
+    <string name="H">Help</string>
+    <string name="More">More</string>
+    <string name="Less">Less</string>
+    <string name="askQ">Ask a question about cash in</string>
+
+
+</resources>
