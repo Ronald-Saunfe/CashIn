@@ -6,7 +6,7 @@
     <string name="title_activity_main">Main</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="login">Login</string>
+    <string name="login">Sign In</string>
     <string name="Register">Register Account</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -14,10 +14,9 @@
     <string name="Password">Password</string>
     <string name="SignIn">Sign In</string>
 
-    <!-- Menu strings -->
     <string name="Profile">Profile</string>
     <string name="IE">Invest and Earn</string>
-    <string name="PI">Puchase Investments</string>
+    <string name="PI">Purchase Investments</string>
     <string name="Messages">Messages</string>
     <string name="WC">Withdraw Cash</string>
     <string name="TM">Terms and Conditions</string>
@@ -25,6 +24,18 @@
     <string name="More">More</string>
     <string name="Less">Less</string>
     <string name="askQ">Ask a question about cash in</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_Username">Username</string>
+    <string name="prompt_confirm_password">Confirm Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be greater than 5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="IAWTC">I agree with terms and conditions</string>
 
 
 </resources>
