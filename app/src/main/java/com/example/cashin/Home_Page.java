@@ -16,13 +16,12 @@ public class Home_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__page);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Home");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }
@@ -40,6 +39,7 @@ public class Home_Page extends AppCompatActivity {
                 Toast.makeText(Home_Page.this,"coming soon",Toast.LENGTH_LONG).show();
                 return true;
 
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -48,10 +48,11 @@ public class Home_Page extends AppCompatActivity {
     private void showAbout() {
         new AlertDialog.Builder(this)
                 .setTitle("About Cash in")
-                .setMessage("Cash in helps earn more.\n\n\n Version 1.0.1")
+                .setMessage("Cash in helps you to earn more.\n\n\n Version 1.0.1")
                 .setCancelable(false)
                 .setNegativeButton(android.R.string.yes, null)
                 .create().show();
     }
+
 
 }
