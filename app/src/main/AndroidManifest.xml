@@ -14,18 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".Home_Page"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+        <activity android:name=".EntranceActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Home_Page" />
 
         <service
             android:name=".clientServer"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Entrance" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

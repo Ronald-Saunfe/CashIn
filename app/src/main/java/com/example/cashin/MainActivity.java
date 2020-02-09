@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
 
         Animation animation=AnimationUtils.loadAnimation(this,R.anim.mytransation);
 
-        final Intent i=new Intent(this,Entrance.class);
+        final Intent i=new Intent(this, EntranceActivity.class);
 
         textView.startAnimation(animation);
         circleImageView.startAnimation(animation);
