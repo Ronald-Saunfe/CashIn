@@ -1,6 +1,7 @@
 package com.example.cashin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
 
         Animation animation=AnimationUtils.loadAnimation(this,R.anim.mytransation);
 
-        final Intent i=new Intent(this, EntranceActivity.class);
+        final Intent i=new Intent(this, Nav.class);
 
         textView.startAnimation(animation);
         circleImageView.startAnimation(animation);

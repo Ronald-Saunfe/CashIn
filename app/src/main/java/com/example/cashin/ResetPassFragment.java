@@ -1,15 +1,26 @@
 package com.example.cashin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class ResetPassFragment extends Fragment {
@@ -24,18 +35,14 @@ public class ResetPassFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    Button reset;
+    EditText myemail;
+    ProgressBar progressBar;
+    private FirebaseAuth auth;
+
     public ResetPassFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ResetPassFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static ResetPassFragment newInstance(String param1, String param2) {
         ResetPassFragment fragment = new ResetPassFragment();
@@ -60,7 +67,54 @@ public class ResetPassFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_reset_pass, container, false);
+        myemail=(EditText) view.findViewById(R.id.reset_email);
+        reset=(Button) view.findViewById(R.id.Update_new_pass);
+        progressBar=(ProgressBar) view.findViewById(R.id.progressBarUpdate);
+
+
+
+        auth = FirebaseAuth.getInstance();
+
+        reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = myemail.getText().toString();
+                if (TextUtils.isEmpty(email)){
+                    myemail.setError(getString(R.string.prompt_email));
+                }
+                progressBar.setVisibility(View.VISIBLE);
+                auth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Intent i=new Intent(getActivity(),LoginFragment.class);
+                                    startActivity(i);
+                                    Toast.makeText(getActivity(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    showDialog();
+                                    Toast.makeText(getActivity(), "Failed to send reset email!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                progressBar.setVisibility(View.GONE);
+                            }
+                        });
+
+
+            }
+        });
+
+
         return view;
+    }
+
+    private void showDialog() {
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Unable to connect!")
+                .setMessage("Make sure you have internet connection.")
+                .setCancelable(false)
+                .setNegativeButton(android.R.string.yes, null)
+                .create().show();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

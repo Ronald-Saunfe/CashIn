@@ -14,6 +14,8 @@
     <string name="Password">Password</string>
     <string name="SignIn">Sign In</string>
 
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="Profile">Profile</string>
     <string name="IE">Invest and Earn</string>
     <string name="PI">Purchase Investments</string>
@@ -28,9 +30,12 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_new_pass">Enter new Password</string>
     <string name="prompt_confirm_new_pass">Confirm new Password</string>
-    <string name="prompt_update_pass">Update</string>
+    <string name="prompt_update_pass">Reset Password</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_Username">Username</string>
+    <string name="forgotten_pass">Forgotten Password</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="email_should_have">Email should contain @gmail or @yahoo</string>
     <string name="prompt_user_email">Enter your Username or Email</string>
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="action_sign_in">Sign in or register</string>
