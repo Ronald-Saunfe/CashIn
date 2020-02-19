@@ -17,13 +17,14 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 
 public class EntranceFragment extends Fragment {
 
     private LoginFragment.OnFragmentInteractionListener mListener;
 
-    Button login,register;
-    FrameLayout layout;
+    private FrameLayout layout;
     TextView reset;
 
     public EntranceFragment() {
@@ -42,8 +43,8 @@ public class EntranceFragment extends Fragment {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_entrance, container, false);
 
-        login=(Button) inflate.findViewById(R.id.btnLogin);
-        register=(Button) inflate.findViewById(R.id.btnRegEntr);
+        Button login = (Button) inflate.findViewById(R.id.btnLogin);
+        Button register = (Button) inflate.findViewById(R.id.btnRegEntr);
         layout=(FrameLayout) inflate.findViewById(R.id.entrance_frag);
 
 
@@ -54,7 +55,7 @@ public class EntranceFragment extends Fragment {
 
                 layout.removeAllViews();
                 LoginFragment newFragment=new LoginFragment();
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft= Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.addToBackStack(null).replace(R.id.frame_layout,newFragment).commit();
 
             }
@@ -66,7 +67,7 @@ public class EntranceFragment extends Fragment {
 
                 layout.removeAllViews();
                 SignUpFragment myf=new SignUpFragment();
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction ft= Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 ft.addToBackStack(null).replace(R.id.frame_layout,myf).commit();
 
             }
