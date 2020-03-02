@@ -1,19 +1,12 @@
 <resources>
     <string name="app_name">Cash In</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="logoSubhead">Invest and Earn</string>
     <string name="title_activity_main">Main</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="login">Sign In</string>
     <string name="Register">Register Account</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="EmailA">Email Address</string>
     <string name="Password">Password</string>
     <string name="SignIn">Sign In</string>
-
     <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
     <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
     <string name="Profile">Profile</string>
@@ -25,22 +18,26 @@
     <string name="H">Help</string>
     <string name="More">More</string>
     <string name="Less">Less</string>
+    <string name="logout">Log Out</string>
     <string name="askQ">Ask a question about cash in</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
-    <string name="prompt_new_pass">Enter new Password</string>
+    <string name="prompt_email">Enter your Email</string>
+    <string name="prompt_new_pass">Enter your new Password</string>
     <string name="prompt_confirm_new_pass">Confirm new Password</string>
+    <string name="pass_mismatch">Password are not matching</string>
     <string name="prompt_update_pass">Reset Password</string>
-    <string name="prompt_password">Password</string>
-    <string name="prompt_Username">Username</string>
-    <string name="forgotten_pass">Forgotten Password</string>
+    <string name="prompt_password">Enter your Password</string>
+    <string name="dont_have_ac">Dont have Account?</string>
+    <string name="prompt_Username">Enter your username</string>
+    <string name="forgotten_pass">Forgotten Password?</string>
+    <string name="unable_to_connect">Unable to send link make sure email provided is correct and you are connected. </string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="email_should_have">Email should contain @gmail or @yahoo</string>
     <string name="prompt_user_email">Enter your Username or Email</string>
     <string name="prompt_confirm_password">Confirm Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome !"</string>
+    <string name="welcome">"Welcome!"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be greater than 5 characters</string>
     <string name="login_failed">"Login failed"</string>

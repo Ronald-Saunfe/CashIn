@@ -1,28 +1,62 @@
 package com.example.cashin;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
-public class Home_Page extends AppCompatActivity {
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 
+public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
+
+    Class fragmentclass;
+    public static Fragment fragment;
+
+    @SuppressLint("WrongConstant")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__page);
-
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Home");
+
+        //sending data to my fragment
+        //HomeFragment fragment2 = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.HomeFragment);
+        //fragment2.setArguments(getIntent().getExtras());
+
+
+        fragmentclass=HomeFragment.class;
+        try {
+            fragment=(Fragment) fragmentclass.newInstance();
+        } catch (IllegalAccessException | InstantiationException e) {
+            e.printStackTrace();
+        }
+
+        if(fragment!=null){
+            FragmentManager fragmentManager=getSupportFragmentManager();
+            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.Menu_Frame,fragment).commit();
+        }
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }
@@ -72,6 +106,33 @@ public class Home_Page extends AppCompatActivity {
             }
         }, 2000);
     }
+    public void openLink(final View view) {
+        FirebaseAuth.getInstance().signOut();
+        GoogleSignIn.getClient(Home_Page.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+                .signOut()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
 
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        startActivity(new Intent(view.getContext(),Nav.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(Home_Page.this,"Sign Out Failed",Toast.LENGTH_SHORT).show();
+            }
+        });
 
+    }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    public interface OnFragmentCommunicationListener {
+        void onNameChange(String name);
+
+        void onEmailChange(String email);
+
+    }
 }

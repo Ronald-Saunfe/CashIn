@@ -9,10 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class Nav extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener,
-        SignUpFragment.OnFragmentInteractionListener,ResetPassFragment.OnFragmentInteractionListener{
+public class Nav extends AppCompatActivity
+        implements LoginFragment.OnFragmentInteractionListener,
+        SignUpFragment.OnFragmentInteractionListener,
+        ResetPassFragment.OnFragmentInteractionListener,
+        HomeFragment.OnFragmentInteractionListener{
 
-    Button login,register;
     Class fragmentclass;
     public static Fragment fragment;
 
@@ -35,8 +37,8 @@ public class Nav extends AppCompatActivity implements LoginFragment.OnFragmentIn
             FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction().setTransition(R.anim.fade_in).replace(R.id.frame_layout,fragment).commit();
         }
-    }
 
+    }
     @Override
     public void onFragmentInteraction(Uri uri) {
 

@@ -7,7 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SignUpFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,105 +25,141 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
-            <EditText
-                android:id="@+id/Username"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RRUsername"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="24dp"
-                android:hint="@string/prompt_Username"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/colorLightAccent"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="32dp"
+                app:boxBackgroundMode="filled"
+                app:boxCollapsedPaddingTop=".2dp"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/progressBarSignUp" />
+                app:layout_constraintTop_toBottomOf="@+id/progressBarSignUp">
 
-            <EditText
-                android:id="@+id/Remail"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/RUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_Username"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RRemail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-
-                android:layout_marginEnd="24dp"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/colorLightAccent"
+                android:layout_marginEnd="32dp"
+                app:boxBackgroundMode="filled"
+                app:boxCollapsedPaddingTop=".2dp"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Username" />
+                app:layout_constraintTop_toBottomOf="@+id/RRUsername">
 
-            <EditText
-                android:id="@+id/Rpassword"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Remail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_email"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RRpassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-
-                android:hint="@string/prompt_password"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/colorLightAccent"
+                android:layout_marginEnd="32dp"
+                app:boxBackgroundMode="filled"
+                app:boxCollapsedPaddingTop=".2dp"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Remail" />
+                app:layout_constraintTop_toBottomOf="@+id/RRemail">
 
-            <EditText
-                android:id="@+id/R_Confirm_password"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Rpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_password"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/RR_Confirm_password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="24dp"
-
-                android:hint="@string/prompt_confirm_password"
-                android:imeActionLabel="@string/action_sign_in_short"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:selectAllOnFocus="true"
-                android:textColor="@color/colorLightAccent"
+                android:layout_marginEnd="32dp"
+                app:boxBackgroundMode="filled"
+                app:boxCollapsedPaddingTop=".2dp"
+                app:helperTextTextAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Rpassword" />
+                app:layout_constraintTop_toBottomOf="@+id/RRpassword">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/R_Confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_confirm_password"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBox_tmc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="18dp"
                 android:text="@string/IAWTC"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/R_Confirm_password" />
+                app:layout_constraintTop_toBottomOf="@+id/RR_Confirm_password" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imageView2"
+            <ImageView
+                android:id="@+id/profile"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                app:civ_border_width=".8sp"
                 android:layout_marginTop="60dp"
-                android:src="@mipmap/logo_foreground"
+                android:padding="4dp"
+                android:src="@drawable/prof_pic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="18dp"
                 android:background="@drawable/my_btn_"
                 android:text="@string/Register"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+                app:layout_constraintTop_toBottomOf="@+id/Error_SignUp" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -135,7 +171,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/profile" />
 
             <View
                 android:id="@+id/divider5"
@@ -159,15 +195,14 @@
                 app:layout_constraintStart_toEndOf="@+id/divider5"
                 app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
-            <ImageView
-                android:id="@+id/gmail"
-                android:layout_width="70dp"
-                android:layout_height="26dp"
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/SignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                app:srcCompat="@drawable/google2" />
+                app:layout_constraintTop_toBottomOf="@+id/textView2"/>
 
             <ProgressBar
                 android:id="@+id/progressBarSignUp"
@@ -178,6 +213,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/Error_SignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="#F44336"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBox_tmc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

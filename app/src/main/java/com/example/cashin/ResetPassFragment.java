@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -16,11 +17,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 
 public class ResetPassFragment extends Fragment {
@@ -38,11 +43,15 @@ public class ResetPassFragment extends Fragment {
     Button reset;
     EditText myemail;
     ProgressBar progressBar;
+    String email;
+    TextView error;
     private FirebaseAuth auth;
 
     public ResetPassFragment() {
         // Required empty public constructor
     }
+
+
     // TODO: Rename and change types and number of parameters
     public static ResetPassFragment newInstance(String param1, String param2) {
         ResetPassFragment fragment = new ResetPassFragment();
@@ -70,37 +79,43 @@ public class ResetPassFragment extends Fragment {
         myemail=(EditText) view.findViewById(R.id.reset_email);
         reset=(Button) view.findViewById(R.id.Update_new_pass);
         progressBar=(ProgressBar) view.findViewById(R.id.progressBarUpdate);
-
-
+        error=(TextView) view.findViewById(R.id.Error_Reset);
 
         auth = FirebaseAuth.getInstance();
+
 
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = myemail.getText().toString();
+
                 if (TextUtils.isEmpty(email)){
                     myemail.setError(getString(R.string.prompt_email));
+                    return;
                 }
+                if (!email.contains("@gmail.com")) {
+                    myemail.setError(getString(R.string.email_should_have));
+                    return;
+                }
+
+
                 progressBar.setVisibility(View.VISIBLE);
                 auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Intent i=new Intent(getActivity(),LoginFragment.class);
-                                    startActivity(i);
-                                    Toast.makeText(getActivity(), "We have sent you instructions to reset your password!", Toast.LENGTH_SHORT).show();
+                                    LoginFragment newfrag=new LoginFragment();
+                                    FragmentTransaction ft= Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                                    ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
+                                    error.setText("Password reset succefully!.\nCheck your email we have sent ");
+
                                 } else {
                                     showDialog();
-                                    Toast.makeText(getActivity(), "Failed to send reset email!", Toast.LENGTH_SHORT).show();
                                 }
-
                                 progressBar.setVisibility(View.GONE);
                             }
                         });
-
-
             }
         });
 
@@ -109,9 +124,9 @@ public class ResetPassFragment extends Fragment {
     }
 
     private void showDialog() {
-        new AlertDialog.Builder(getActivity())
+        new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setTitle("Unable to connect!")
-                .setMessage("Make sure you have internet connection.")
+                .setMessage(getString(R.string.unable_to_connect))
                 .setCancelable(false)
                 .setNegativeButton(android.R.string.yes, null)
                 .create().show();
