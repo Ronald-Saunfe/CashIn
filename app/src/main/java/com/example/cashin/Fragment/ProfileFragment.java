@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.cashin.R;
 
 public class ProfileFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,9 +7,15 @@ import androidx.fragment.app.FragmentManager;
 import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 
-public class Nav extends AppCompatActivity
+import com.example.cashin.Fragment.EntranceFragment;
+import com.example.cashin.Fragment.HomeFragment;
+import com.example.cashin.Fragment.LoginFragment;
+import com.example.cashin.Fragment.ResetPassFragment;
+import com.example.cashin.Fragment.SignUpFragment;
+import com.example.cashin.R;
+
+public class Entrance_Page extends AppCompatActivity
         implements LoginFragment.OnFragmentInteractionListener,
         SignUpFragment.OnFragmentInteractionListener,
         ResetPassFragment.OnFragmentInteractionListener,
@@ -22,11 +28,11 @@ public class Nav extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nav);
+        setContentView(R.layout.activity_entrance__page);
 
 
-        ///Adding myfragment to the layout............>>>
-        fragmentclass=EntranceFragment.class;
+        ///Adding or Inflating myfragment to the layout............>>>
+        fragmentclass= EntranceFragment.class;
         try {
             fragment=(Fragment) fragmentclass.newInstance();
         } catch (IllegalAccessException | InstantiationException e) {

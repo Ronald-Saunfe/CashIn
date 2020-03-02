@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".SignUpFragment">
+    tools:context=".Fragment.SignUpFragment">
 
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -131,11 +137,14 @@
 
             <CheckBox
                 android:id="@+id/checkBox_tmc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="262dp"
+                android:layout_height="31dp"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="18dp"
+                android:fontFamily="serif"
                 android:text="@string/IAWTC"
+                android:textSize="10sp"
+                android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/RR_Confirm_password" />
 
@@ -157,6 +166,7 @@
                 android:layout_marginTop="18dp"
                 android:background="@drawable/my_btn_"
                 android:text="@string/Register"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Error_SignUp" />
@@ -202,7 +212,7 @@
                 android:layout_marginTop="7dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <ProgressBar
                 android:id="@+id/progressBarSignUp"
@@ -228,4 +238,4 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

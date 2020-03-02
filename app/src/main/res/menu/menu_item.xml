@@ -7,10 +7,7 @@
         android:id="@+id/About_Cashin"
         app:showAsAction="never"
         android:title="About App" />
-    <item
-        android:title="Settings"
-        android:id="@+id/settings"
-        app:showAsAction="never"/>
+
 
 
 </menu>

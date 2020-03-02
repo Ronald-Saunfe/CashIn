@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Service;
 
 import android.app.Service;
 import android.content.Intent;

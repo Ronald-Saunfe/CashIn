@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/dashboard" android:title="DashBoard" android:icon="@drawable/ic_home" />
+    <item android:id="@+id/profile" android:title="Profile" android:icon="@drawable/ic_account_box"/>
+    <item android:id="@+id/settings" android:title="Settings" android:icon="@drawable/ic_settings"/>
+    <item android:id="@+id/help" android:title="Help" android:icon="@drawable/ic_help_outline"/>
+    <item android:id="@+id/logout" android:title="Log Out" android:icon="@drawable/ic_logout_outline"/>/
+
+</menu>

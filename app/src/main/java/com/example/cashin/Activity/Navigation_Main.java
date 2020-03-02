@@ -1,8 +1,10 @@
-package com.example.cashin;
+package com.example.cashin.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -15,32 +17,43 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashin.Fragment.HomeFragment;
+import com.example.cashin.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
+public class Navigation_Main extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener{
+
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle drawerToggle;
+
+    private TextView username,email;
+    private ImageView  profile_pic;
 
     Class fragmentclass;
     public static Fragment fragment;
 
     @SuppressLint("WrongConstant")
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home__page);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Home");
+        setContentView(R.layout.activity_navigation__main);
+        getSupportActionBar().setTitle("CashIn Home");
 
-        //sending data to my fragment
-        //HomeFragment fragment2 = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.HomeFragment);
-        //fragment2.setArguments(getIntent().getExtras());
+        drawerLayout=(DrawerLayout) findViewById(R.id.root_nav);
+        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
 
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragmentclass=HomeFragment.class;
         try {
@@ -51,9 +64,15 @@ public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragm
 
         if(fragment!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();
-            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.Menu_Frame,fragment).commit();
+            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.root_layout_nav,fragment).commit();
         }
+
+
+
+
+
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -63,6 +82,9 @@ public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragm
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        if (drawerToggle.onOptionsItemSelected(item)){
+            return true;
+        }
         switch (item.getItemId()) {
             case R.id.About_Cashin:
                 Toast toast= Toast.makeText(getApplicationContext(),"About Cash in",Toast.LENGTH_SHORT);
@@ -71,7 +93,7 @@ public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragm
                 showAbout();
                 return true;
             case R.id.settings:
-                Toast.makeText(Home_Page.this,"coming soon",Toast.LENGTH_LONG).show();
+                Toast.makeText(Navigation_Main.this,"coming soon",Toast.LENGTH_LONG).show();
                 return true;
 
 
@@ -108,18 +130,18 @@ public class Home_Page extends AppCompatActivity implements HomeFragment.OnFragm
     }
     public void openLink(final View view) {
         FirebaseAuth.getInstance().signOut();
-        GoogleSignIn.getClient(Home_Page.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+        GoogleSignIn.getClient(Navigation_Main.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
                 .signOut()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
 
                     @Override
                     public void onSuccess(Void aVoid) {
-                        startActivity(new Intent(view.getContext(),Nav.class));
+                        startActivity(new Intent(view.getContext(),Entrance_Page.class));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Home_Page.this,"Sign Out Failed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Navigation_Main.this,"Sign Out Failed",Toast.LENGTH_SHORT).show();
             }
         });
 

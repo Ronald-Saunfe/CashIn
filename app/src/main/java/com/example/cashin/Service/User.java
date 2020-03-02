@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Service;
 
 public class User{
     private String email;

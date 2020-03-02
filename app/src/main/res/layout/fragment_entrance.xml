@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/entrance_frag"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".EntranceFragment">
+    tools:context=".Fragment.EntranceFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,10 +17,11 @@
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/my_btn_"
             android:text="@string/login"
             android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

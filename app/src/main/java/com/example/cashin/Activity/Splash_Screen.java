@@ -1,29 +1,18 @@
-package com.example.cashin;
+package com.example.cashin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
-import android.util.Log;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Timer;
+import com.example.cashin.R;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity{
+public class Splash_Screen extends AppCompatActivity{
 
     TextView textView;
     CircleImageView circleImageView;
@@ -32,7 +21,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splash__screen);
 
 
 
@@ -41,7 +30,7 @@ public class MainActivity extends AppCompatActivity{
 
         Animation animation=AnimationUtils.loadAnimation(this,R.anim.mytransation);
 
-        final Intent i=new Intent(this, Nav.class);
+        final Intent i=new Intent(this, Entrance_Page.class);
 
         textView.startAnimation(animation);
         circleImageView.startAnimation(animation);
@@ -65,4 +54,5 @@ public class MainActivity extends AppCompatActivity{
 
 
     }
+    //check netconnection
 }

@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,15 +10,11 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +24,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashin.Activity.Navigation_Main;
+import com.example.cashin.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -37,17 +35,12 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GithubAuthCredential;
 import com.google.firebase.auth.GithubAuthProvider;
 
 import java.util.Objects;
-
-import static android.content.ContentValues.TAG;
 
 public class LoginFragment extends Fragment {
 
@@ -127,7 +120,7 @@ public class LoginFragment extends Fragment {
         GoogleSignInAccount googleSignInAccount=GoogleSignIn.getLastSignedInAccount(getActivity());
         if (googleSignInAccount !=null){
             Toast.makeText(getActivity(),"Welcome to CashIn Softs",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getActivity(),Home_Page.class));
+            startActivity(new Intent(getActivity(), Navigation_Main.class));
         }
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +185,7 @@ public class LoginFragment extends Fragment {
 
                                 } else {
 
-                                    Intent i=new Intent(getActivity(),Home_Page.class);
+                                    Intent i=new Intent(getActivity(),Navigation_Main.class);
                                     startActivity(i);
 
                                 }
@@ -225,7 +218,7 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getActivity(),"Your Account is connected to CashIn Welcome!",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(),Home_Page.class));
+                        startActivity(new Intent(getActivity(),Navigation_Main.class));
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

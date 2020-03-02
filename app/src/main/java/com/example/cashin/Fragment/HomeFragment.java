@@ -1,4 +1,4 @@
-package com.example.cashin;
+package com.example.cashin.Fragment;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.cashin.Activity.Entrance_Page;
+import com.example.cashin.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +48,6 @@ public class HomeFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
     TextView UserName;
     ImageView prof;
-    User userinfo;
     private FirebaseUser firebaseUser;
     private FirebaseAuth firebaseAuth;
     private StorageReference mStorage;
@@ -76,13 +77,32 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        String info=firebaseUser.getUid();
 
-        /*if (firebaseUser !=null){
-            reference=FirebaseDatabase.getInstance().getReference().child("Users Information").child(info);
+
+        if (firebaseUser !=null){
+            for (UserInfo profile : firebaseUser.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                String providerId = profile.getProviderId();
+                // UID specific to the provider
+                String uid = profile.getUid();
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                String email = profile.getEmail();
+                Uri photoUrl = profile.getPhotoUrl();
+
+                UserName.setText("Signed In as:\t\t" +name);
+                Picasso.with(getContext())
+                        .load(photoUrl)
+                        .into(prof);
+                //reference=FirebaseDatabase.getInstance().getReference().child("Users Information").child(firebaseUser.getUid());
+
+            }
+        }
+
+       else if (firebaseUser !=null){
+            reference=FirebaseDatabase.getInstance().getReference().child("Users Information").child(firebaseUser.getUid());
             reference.addValueEventListener(new ValueEventListener() {
                 @SuppressLint("SetTextI18n")
                 @Override
@@ -102,34 +122,10 @@ public class HomeFragment extends Fragment {
                 }
             });
 
-        }*/
-
-
-        if (firebaseUser != null) {
-            for (UserInfo profile : firebaseUser.getProviderData()) {
-                // Id of the provider (ex: google.com)
-                String providerId = profile.getProviderId();
-                // UID specific to the provider
-                String uid = profile.getUid();
-                // Name, email address, and profile photo Url
-                String name = profile.getDisplayName();
-                String email = profile.getEmail();
-                Uri photoUrl = profile.getPhotoUrl();
-
-                UserName.setText("Signed In as:\t\t" +name);
-                Picasso.with(getContext())
-                        .load(photoUrl)
-                        .into(prof);
-            }
         }
         return view;
     }
 
-    //adding user details to database
-    private void getValues(){
-        userinfo.getEmail();
-
-    }
     public void showDialog() {
         new AlertDialog.Builder(Objects.requireNonNull(getActivity()))
                 .setIcon(R.drawable.signout)
@@ -155,7 +151,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getActivity(),"Succesfully Signed out",Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getActivity(),Nav.class));
+                        startActivity(new Intent(getActivity(), Entrance_Page.class));
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -167,7 +163,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

@@ -1,43 +1,33 @@
-package com.example.cashin;
+package com.example.cashin.Fragment;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.widget.ContentLoadingProgressBar;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashin.Activity.Navigation_Main;
+import com.example.cashin.R;
+import com.example.cashin.Service.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -55,7 +45,6 @@ import com.google.firebase.auth.FirebaseAuth.AuthStateListener;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GithubAuthProvider;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,21 +52,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URL;
 import java.util.Objects;
-import java.util.UUID;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
-import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class SignUpFragment extends Fragment {
 
@@ -166,8 +148,8 @@ public class SignUpFragment extends Fragment {
         GoogleSignInAccount googleSignInAccount=GoogleSignIn.getLastSignedInAccount(getActivity());
         if (googleSignInAccount !=null){
             Toast.makeText(getActivity(),"Welcome to CashIn Softs",Toast.LENGTH_SHORT).show();
-            progressDialog.show();
-            startActivity(new Intent(getActivity(),Home_Page.class));
+
+            startActivity(new Intent(getActivity(), Navigation_Main.class));
         }
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +157,8 @@ public class SignUpFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 Intent sign= googleSignInClient.getSignInIntent();
                 startActivityForResult(sign, GOOGLE_SIGN_IN_CODE);
+
+
             }
         });
 
@@ -264,7 +248,7 @@ public class SignUpFragment extends Fragment {
 
                                 }else {
 
-                                    Intent i = new Intent(getActivity(), Home_Page.class);
+                                    Intent i = new Intent(getActivity(), Navigation_Main.class);
                                     startActivity(i);
                                     Toast.makeText(getActivity(),
                                             "Welcome to CashIn Home ",
@@ -285,16 +269,18 @@ public class SignUpFragment extends Fragment {
             Task<GoogleSignInAccount> signInAccountTask=GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                GoogleSignInAccount signInAccount=signInAccountTask.getResult(ApiException.class);
+                final GoogleSignInAccount signInAccount=signInAccountTask.getResult(ApiException.class);
                 assert signInAccount != null;
                 AuthCredential authCredential= GoogleAuthProvider.getCredential(signInAccount.getIdToken(),null);
 
                 auth.signInWithCredential(authCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressBar.setVisibility(View.INVISIBLE);
+
                         Toast.makeText(getActivity(),"Your Account is connected to CashIn Welcome!",Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(),Home_Page.class));
+                        startActivity(new Intent(getActivity(),Navigation_Main.class));
 
 
                     }
@@ -338,7 +324,6 @@ public class SignUpFragment extends Fragment {
         user.setPhone(myconfirmpass.getText().toString());
         user.setProfilePic(mypassword.getText().toString());
         user.setUsername(myusername.getText().toString());
-
    }
     ///Adding my profile to the storage....
     private void addUserInDatabse(final FirebaseUser firebaseUser){
