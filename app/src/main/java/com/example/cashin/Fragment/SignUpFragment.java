@@ -148,7 +148,6 @@ public class SignUpFragment extends Fragment {
         GoogleSignInAccount googleSignInAccount=GoogleSignIn.getLastSignedInAccount(getActivity());
         if (googleSignInAccount !=null){
             Toast.makeText(getActivity(),"Welcome to CashIn Softs",Toast.LENGTH_SHORT).show();
-
             startActivity(new Intent(getActivity(), Navigation_Main.class));
         }
         signInButton.setOnClickListener(new View.OnClickListener() {

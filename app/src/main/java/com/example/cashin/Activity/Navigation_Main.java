@@ -1,6 +1,7 @@
 package com.example.cashin.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.cashin.Fragment.HomeFragment;
 import com.example.cashin.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -28,19 +32,25 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.squareup.picasso.Picasso;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Navigation_Main extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener{
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
     private TextView username,email;
     private ImageView  profile_pic;
 
     Class fragmentclass;
     public static Fragment fragment;
 
-    @SuppressLint("WrongConstant")
+    @SuppressLint({"WrongConstant", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +59,8 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
 
         drawerLayout=(DrawerLayout) findViewById(R.id.root_nav);
         drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragmentclass=HomeFragment.class;
@@ -61,14 +69,10 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
         } catch (IllegalAccessException | InstantiationException e) {
             e.printStackTrace();
         }
-
         if(fragment!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();
             fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.root_layout_nav,fragment).commit();
         }
-
-
-
 
 
     }
