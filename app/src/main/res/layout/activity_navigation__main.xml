@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.Navigation_Main"
+    android:id="@+id/root_nav">
+
+    <LinearLayout
+        android:id="@+id/root_layout_nav"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+
+    <com.google.android.material.navigation.NavigationView
+        app:headerLayout="@layout/header"
+        app:itemIconPadding="12dp"
+        app:elevation="12dp"
+        app:itemBackground="@drawable/mydivider"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:menu="@menu/drawermenus"
+        app:itemTextColor="@color/colorPrimaryDark"
+        app:itemIconTint="@color/colorPrimary"
+        android:layout_gravity="start"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

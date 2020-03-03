@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "991450820914",
+    "firebase_url": "https://cash-in-fb45b.firebaseio.com",
+    "project_id": "cash-in-fb45b",
+    "storage_bucket": "cash-in-fb45b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991450820914:android:afedfd19cd40a5bff2672b",
+        "android_client_info": {
+          "package_name": "com.example.cashin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991450820914-7afeuiboi78g2ib9pap06vk0i0keu6ad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cashin",
+            "certificate_hash": "f052a104f7bd2f24084a304b0b7d1954944e22d2"
+          }
+        },
+        {
+          "client_id": "991450820914-fnn0812r0snf02mdohnkmtgp8m0o5v6e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACttJUr6w6JB54jwHjO9kHksVxcM-OSI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "991450820914-fnn0812r0snf02mdohnkmtgp8m0o5v6e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
