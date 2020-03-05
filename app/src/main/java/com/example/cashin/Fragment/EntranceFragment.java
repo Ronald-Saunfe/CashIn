@@ -3,6 +3,7 @@ package com.example.cashin.Fragment;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -23,7 +24,7 @@ public class EntranceFragment extends Fragment {
 
     private LoginFragment.OnFragmentInteractionListener mListener;
 
-    private FrameLayout layout;
+    private ConstraintLayout layout;
     TextView reset;
 
     public EntranceFragment() {
@@ -44,8 +45,7 @@ public class EntranceFragment extends Fragment {
 
         Button login = (Button) inflate.findViewById(R.id.btnLogin);
         Button register = (Button) inflate.findViewById(R.id.btnRegEntr);
-        layout=(FrameLayout) inflate.findViewById(R.id.entrance_frag);
-
+        layout=(ConstraintLayout) inflate.findViewById(R.id.entrance_frag);
 
 
         login.setOnClickListener(new View.OnClickListener() {

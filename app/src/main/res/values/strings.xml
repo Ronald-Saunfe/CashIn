@@ -5,7 +5,9 @@
     <string name="logoSubhead">Invest and Earn</string>
     <string name="title_activity_main">Main</string>
     <string name="login">Sign In</string>
+    <string name="loginUpper">SIGN IN</string>
     <string name="Register">Register Account</string>
+    <string name="RegisterUpper">REGISTER ACCOUNT</string>
     <string name="EmailA">Email Address</string>
     <string name="Password">Password</string>
     <string name="SignIn">Sign In</string>
@@ -23,14 +25,14 @@
     <string name="logout">Log Out</string>
     <string name="askQ">Ask a question about cash in</string>
     <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Enter your Email</string>
-    <string name="prompt_new_pass">Enter your new Password</string>
-    <string name="prompt_confirm_new_pass">Confirm new Password</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_new_pass">New Password</string>
+    <string name="prompt_confirm_new_pass">Confirm New Password</string>
     <string name="pass_mismatch">Password are not matching</string>
     <string name="prompt_update_pass">Reset Password</string>
-    <string name="prompt_password">Enter your Password</string>
+    <string name="prompt_password">Password</string>
     <string name="dont_have_ac">Dont have Account?</string>
-    <string name="prompt_Username">Enter your username</string>
+    <string name="prompt_Username">Username</string>
     <string name="forgotten_pass">Forgotten Password?</string>
     <string name="unable_to_connect">Unable to send link make sure email provided is correct and you are connected. </string>
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
@@ -43,7 +45,7 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be greater than 5 characters</string>
     <string name="login_failed">"Login failed"</string>
-    <string name="IAWTC">I agree with terms and conditions</string>
+    <string name="IAWTC">I agree with the terms and conditions</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -61,6 +63,11 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string name="Powered">©Powered by Awwads Cash In \nSoftware</string>
+    <string name="Powered1">©Powered by Awwads Cash In Software</string>
+
+    <string name="Balance">0</string>
 
 
 </resources>

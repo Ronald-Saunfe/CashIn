@@ -19,18 +19,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-
-        <activity android:name=".Activity.Entrance_Page"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Activity.Splash_Screen"
+        <activity android:name=".Activity.Withdraw"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.profilePage"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.purchaseInvestment"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.InvestEarn"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Entrance_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Activity.Splash_Screen"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activity.Navigation_Main" />
+        <activity
+            android:name=".Activity.Navigation_Main"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".Service.clientServer"

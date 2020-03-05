@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,10 +46,7 @@ import java.util.Objects;
 
 public class LoginFragment extends Fragment {
 
-
-
     public static final int GOOGLE_SIGN_IN_CODE = 0;
-
 
     EditText myusername, myemail, mypassword, myconfirmpass;
     Button Login,forgottenpass,NoAc;
@@ -58,6 +57,7 @@ public class LoginFragment extends Fragment {
 
 
     private ProgressBar progressBar;
+    private ImageButton btnBackLogin;
     private FirebaseAuth auth;
 
     private OnFragmentInteractionListener mListener;
@@ -69,6 +69,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         myemail = (EditText) view.findViewById(R.id.LEmail);
         myemail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,6 +88,16 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        //navigate back
+        btnBackLogin = (ImageButton) view.findViewById(R.id.btnBackLogin);
+        btnBackLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EntranceFragment newfrag= new EntranceFragment();
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -101,8 +112,10 @@ public class LoginFragment extends Fragment {
         Login = (Button) view.findViewById(R.id.signin);
         NoAc = (Button) view.findViewById(R.id.donthaveac);
         forgottenpass=(Button) view.findViewById(R.id.forgottenpass);
-        signInButton=(SignInButton) view.findViewById(R.id.SignIn);
-        error=(TextView) view.findViewById(R.id.Error);
+        signInButton=(SignInButton) view.findViewById(R.id.SignInGoogle);
+        //Change the sign in button text
+        TextView textView = (TextView) signInButton.getChildAt(0);
+        textView.setText("Gmail");
 
 
         auth = FirebaseAuth.getInstance();
@@ -181,7 +194,6 @@ public class LoginFragment extends Fragment {
 
                                 progressBar.setVisibility(View.GONE);
                                 if (!task.isSuccessful()) {
-                                    error.setText("Unable to connect to sever.Please check you internet connection!");
 
                                 } else {
 
@@ -193,7 +205,7 @@ public class LoginFragment extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        error.setText("Your password or email is incorrect.");
+
                     }
                 });
             }

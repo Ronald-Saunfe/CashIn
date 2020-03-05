@@ -20,6 +20,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,13 +56,11 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation__main);
-        getSupportActionBar().setTitle("CashIn Home");
 
         drawerLayout=(DrawerLayout) findViewById(R.id.root_nav);
         drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         fragmentclass=HomeFragment.class;
         try {
@@ -74,8 +73,8 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
             fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.root_layout_nav,fragment).commit();
         }
 
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

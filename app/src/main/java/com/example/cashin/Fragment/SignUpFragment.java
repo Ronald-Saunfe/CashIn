@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -66,9 +68,7 @@ public class SignUpFragment extends Fragment {
     private static final int GOOGLE_SIGN_IN_CODE = 0;
     private static final Integer PICK_IMAGE_REQUEST=1;
 
-    private TextView error;
     private SignInButton signInButton;
-    private ImageView profile_pic;
     private OnFragmentInteractionListener mListener;
     private EditText myusername,myemail,mypassword,myconfirmpass;
     private Button RegisterAC;
@@ -87,10 +87,36 @@ public class SignUpFragment extends Fragment {
     private GoogleSignInClient googleSignInClient;
     FirebaseUser firebaseUser;
     ProgressDialog progressDialog;
-
+    private ImageButton btnBackSignup;
 
     public SignUpFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //back toolbar button
+        btnBackSignup = view.findViewById(R.id.btnBackSignup);
+        //back toolbar button go to entrance fragment
+        btnBackSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EntranceFragment newfrag= new EntranceFragment();
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
+            }
+        });
+
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EntranceFragment newfrag= new EntranceFragment();
+                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
+            }
+        });
     }
 
     @Override
@@ -102,13 +128,12 @@ public class SignUpFragment extends Fragment {
         myemail=(EditText) view.findViewById(R.id.Remail);
         mypassword=(EditText) view.findViewById(R.id.Rpassword);
         myconfirmpass=(EditText) view.findViewById(R.id.R_Confirm_password);
-        profile_pic=(ImageView) view.findViewById(R.id.profile);
+        //profile_pic=(ImageView) view.findViewById(R.id.profile);
+        signInButton = view.findViewById(R.id.SignInGoogle);
 
         progressBar=(ProgressBar) view.findViewById(R.id.progressBarSignUp);
         RegisterAC=(Button) view.findViewById(R.id.btnRegister);
 
-        signInButton=(SignInButton) view.findViewById(R.id.SignUp);
-        error=(TextView) view.findViewById(R.id.Error);
 
         auth = FirebaseAuth.getInstance();//my Auth
         database=FirebaseDatabase.getInstance();
@@ -125,15 +150,15 @@ public class SignUpFragment extends Fragment {
         databaseReference=FirebaseDatabase.getInstance().getReference();
 
         //On profile pic touched
-        profile_pic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent profileIntent = new Intent();
-                profileIntent.setType("image/*");
-                profileIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(profileIntent, "Select Image."), PICK_IMAGE_REQUEST);
-            }
-        });
+//        profile_pic.setOnClickListener(new View.OnClickListener() {
+  //          @Override
+    //        public void onClick(View v) {
+      //          Intent profileIntent = new Intent();
+        //        profileIntent.setType("image/*");
+          //      profileIntent.setAction(Intent.ACTION_GET_CONTENT);
+            //    startActivityForResult(Intent.createChooser(profileIntent, "Select Image."), PICK_IMAGE_REQUEST);
+            //}
+        //});
 
         // Configure Google Sign In
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -156,8 +181,6 @@ public class SignUpFragment extends Fragment {
                 progressBar.setVisibility(View.VISIBLE);
                 Intent sign= googleSignInClient.getSignInIntent();
                 startActivityForResult(sign, GOOGLE_SIGN_IN_CODE);
-
-
             }
         });
 
@@ -165,7 +188,6 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-
 
                 final String email,password,cpassword,username;
 
@@ -191,10 +213,10 @@ public class SignUpFragment extends Fragment {
                     myemail.setError(getString(R.string.email_should_have));
                     return;
                 }
-                if (profile_pic.getDrawable() == null){
-                    error.setText("Error! Upload");
+//                if (profile_pic.getDrawable() == null){
+  //                  error.setText("Error! Upload");
 
-                }
+    //            }
 
 
                 progressBar.setVisibility(View.VISIBLE);
@@ -218,7 +240,6 @@ public class SignUpFragment extends Fragment {
 
                                     }
                                 });
-
 
                                 progressBar.setVisibility(View.GONE);
 
@@ -299,11 +320,11 @@ public class SignUpFragment extends Fragment {
         assert data != null;
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data.getData() != null) {
             uri = data.getData();
-            profile_pic.setImageURI(uri);
+           // profile_pic.setImageURI(uri);
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), uri);
                 Toast.makeText(getActivity(), "hey you selected image" + bitmap, Toast.LENGTH_SHORT).show();
-                profile_pic.setImageBitmap(bitmap);
+             //   profile_pic.setImageBitmap(bitmap);
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -326,9 +347,9 @@ public class SignUpFragment extends Fragment {
    }
     ///Adding my profile to the storage....
     private void addUserInDatabse(final FirebaseUser firebaseUser){
-        profile_pic.setDrawingCacheEnabled(true);
-        profile_pic.buildDrawingCache();
-        Bitmap bitmap = ((BitmapDrawable) profile_pic.getDrawable()).getBitmap();
+        //profile_pic.setDrawingCacheEnabled(true);
+        //profile_pic.buildDrawingCache();
+        //Bitmap bitmap = ((BitmapDrawable) profile_pic.getDrawable()).getBitmap();
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         byte[] data = bytes.toByteArray();

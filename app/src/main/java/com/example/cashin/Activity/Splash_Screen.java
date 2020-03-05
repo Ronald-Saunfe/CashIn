@@ -2,10 +2,15 @@ package com.example.cashin.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.cashin.R;
@@ -14,8 +19,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Splash_Screen extends AppCompatActivity{
 
-    TextView textView;
-    CircleImageView circleImageView;
+    //views to be animated
+    private ImageView imgLogo;
+    private TextView subtitleLogo;
+    private TextView titleLogo;
+    private ProgressBar progBr;
+
+    //animation object for animating views
+    private Animation animfadein;
+    private Animation animslideup;
+    private Animation animSlidedown;
+    private Context activity;
 
     ///my splash screen>>..................
     @Override
@@ -23,17 +37,38 @@ public class Splash_Screen extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash__screen);
 
+        //animate the logo
+        //reference of views to be animated
+        imgLogo = findViewById(R.id.logoIntro);
+        titleLogo = findViewById(R.id.titleIntro);
+        subtitleLogo = findViewById(R.id.subtitleIntro);
+        progBr = findViewById(R.id.progressBarIntro);
 
+        //declare animations
+        animfadein = AnimationUtils.loadAnimation( getApplicationContext(),R.anim.fade_in);
+        animslideup = AnimationUtils.loadAnimation( getApplicationContext(),R.anim.slide_up);
+        animSlidedown =  AnimationUtils.loadAnimation( getApplicationContext(),R.anim.slide);
+        animslideup.setDuration(800);
+        animfadein.setDuration(800);
+        animSlidedown.setDuration(800);
+        //start animations
+        //set the logo to 1.0 (alpha)
+        imgLogo.startAnimation(animfadein);
+        //translate the title and subtitle
+        titleLogo.startAnimation(animslideup);
+        subtitleLogo.startAnimation(animslideup);
 
-        textView=(TextView) findViewById(R.id.TV);
-        circleImageView=(CircleImageView) findViewById(R.id.IV);
+        //show loading progressbar
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progBr.setVisibility(View.VISIBLE);
+            }
+        }, 1000);
 
-        Animation animation=AnimationUtils.loadAnimation(this,R.anim.mytransation);
 
         final Intent i=new Intent(this, Entrance_Page.class);
-
-        textView.startAnimation(animation);
-        circleImageView.startAnimation(animation);
 
         Thread timer=new Thread(){
             @Override

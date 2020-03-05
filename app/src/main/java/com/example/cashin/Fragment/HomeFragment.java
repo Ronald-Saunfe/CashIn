@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -23,6 +24,11 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.cashin.Activity.Entrance_Page;
+import com.example.cashin.Activity.InvestEarn;
+import com.example.cashin.Activity.Navigation_Main;
+import com.example.cashin.Activity.Withdraw;
+import com.example.cashin.Activity.profilePage;
+import com.example.cashin.Activity.purchaseInvestment;
 import com.example.cashin.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -54,11 +60,57 @@ public class HomeFragment extends Fragment {
     private FirebaseDatabase database;
     private String currentUserID;
     private DatabaseReference reference;
-
+    //menu button
+    private Button btnInvestmentEarn, investmentPurchase, btnMainProfile, withdrawcash;
 
     public HomeFragment() {
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        btnInvestmentEarn = view.findViewById(R.id.investment_earn);
+        //start activity invest and earn
+        btnInvestmentEarn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), InvestEarn.class);
+                startActivity(intent);
+            }
+        });
+
+        investmentPurchase = view.findViewById(R.id.investmentPurchase);
+        //start activity invest and earn
+        investmentPurchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), purchaseInvestment.class);
+                startActivity(intent);
+            }
+        });
+
+        btnMainProfile = view.findViewById(R.id.btnMainProfile);
+        //start activity invest and earn
+        btnMainProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), profilePage.class);
+                startActivity(intent);
+            }
+        });
+
+        withdrawcash = view.findViewById(R.id.withdrawcash);
+        //start activity withdraw cash
+        withdrawcash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Withdraw.class);
+                startActivity(intent);
+            }
+        });
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +119,6 @@ public class HomeFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_home, container, false);
 
         prof=(ImageView) view.findViewById(R.id.profile_home);
-        UserName=(TextView) view.findViewById(R.id.UserName);
         Button signout=(Button) view.findViewById(R.id.logout);
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +143,6 @@ public class HomeFragment extends Fragment {
                 String email = profile.getEmail();
                 Uri photoUrl = profile.getPhotoUrl();
 
-                UserName.setText("Signed In as:\t\t" +name);
                 Picasso.with(getContext())
                         .load(photoUrl)
                         .into(prof);
