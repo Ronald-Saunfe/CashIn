@@ -24,18 +24,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.cashin.Fragment.HomeFragment;
 import com.example.cashin.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
-import com.squareup.picasso.Picasso;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,8 +34,6 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle drawerToggle;
-    private FirebaseUser firebaseUser;
-    private FirebaseAuth firebaseAuth;
     private TextView username,email;
     private ImageView  profile_pic;
 
@@ -57,10 +46,6 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation__main);
 
-        drawerLayout=(DrawerLayout) findViewById(R.id.root_nav);
-        drawerToggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
-        drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
 
         fragmentclass=HomeFragment.class;
         try {
@@ -70,7 +55,7 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
         }
         if(fragment!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();
-            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.root_layout_nav,fragment).commit();
+            fragmentManager.beginTransaction().setTransition(R.anim.slide_up).replace(R.id.root_layout_nav,fragment).commit();
         }
 
     }
@@ -130,24 +115,6 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
                 doubleBackToExitPressedOnce=false;
             }
         }, 2000);
-    }
-    public void openLink(final View view) {
-        FirebaseAuth.getInstance().signOut();
-        GoogleSignIn.getClient(Navigation_Main.this, new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
-                .signOut()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        startActivity(new Intent(view.getContext(),Entrance_Page.class));
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(Navigation_Main.this,"Sign Out Failed",Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
     @Override
     public void onFragmentInteraction(Uri uri) {

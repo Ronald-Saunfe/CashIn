@@ -2,6 +2,9 @@
 
 buildscript {
     repositories {
+        maven {
+            url 'https://dl.bintray.com/spark/maven'
+        }
         google()
         jcenter()
         
@@ -17,6 +20,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {
+            url 'https://dl.bintray.com/spark/maven'
+        }
         google()
         jcenter()
         

@@ -32,8 +32,11 @@
 
     <Button
         android:id="@+id/btnLogin"
-        android:layout_width="166dp"
+        android:transitionName="btnLogIn"
+        android:layout_width="match_parent"
         android:layout_height="38dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:textSize="10sp"
         android:background="@drawable/my_btn_default"
         android:text="@string/loginUpper"
@@ -46,16 +49,18 @@
 
     <Button
         android:id="@+id/btnRegEntr"
-        android:layout_width="166dp"
+        android:layout_width="match_parent"
         android:layout_height="38dp"
-        android:textSize="10sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/my_btn_"
         android:text="@string/RegisterUpper"
         android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="10sp"
+        android:transitionName="btnRegEntrance"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnLogin"
-        android:layout_marginTop="16dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

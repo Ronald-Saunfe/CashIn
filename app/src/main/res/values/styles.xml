@@ -8,9 +8,15 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:windowBackground">@color/activityBackground</item>
-        <item name="buttonStyle">@style/CustomButton</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="buttonStyle">@style/NoShadowButton</item>
 
     </style>
+    <style name="NoShadowButton" parent="android:style/Widget.Button">
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
 
     <!-- Cutomize button appearance -->
     <style name="CustomButton" parent="Widget.AppCompat.Button">

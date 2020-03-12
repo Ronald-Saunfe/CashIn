@@ -19,150 +19,128 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/profile_home"
-                android:layout_width="78dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="6dp"
-                app:layout_constraintEnd_toStartOf="@+id/textView3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="0dp"
-                android:layout_height="27dp"
-                android:layout_marginTop="16dp"
-                android:text="Cash In"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="18sp"
-                app:layout_constraintStart_toEndOf="@+id/profile_home"
-                app:layout_constraintTop_toTopOf="parent" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="62dp"
                 android:orientation="vertical"
                 android:padding="32dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profile_home">
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <Button
                     android:id="@+id/btnMainProfile"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="Profile"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
                 <Button
                     android:id="@+id/investment_earn"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="Invest and Earn"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
 
                 <Button
                     android:id="@+id/investmentPurchase"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="Purchases investment"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
                 <Button
                     android:id="@+id/messages"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="@string/Messages"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
 
                 <Button
                     android:id="@+id/withdrawcash"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="Withdraw Cash"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
                 <Button
                     android:id="@+id/terms-conditions"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="Terms and Conditions"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:textColor="@color/colorGreyDarker" />
 
                 <Button
                     android:id="@+id/logout"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
+                    android:gravity="left|center"
+                    android:paddingLeft="18dp"
                     android:text="@string/logout"
                     android:textAlignment="gravity"
-                    android:gravity="left|center"
-                    android:textColor="@color/colorGreyDarker"
-                    android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp" />
+                    android:textColor="@color/colorGreyDarker" />
 
                 <Button
                     android:id="@+id/Less"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/my_btn_"
-                    android:text="@string/Less"
-                    android:textColor="@color/colorGreyDarker"
                     android:paddingLeft="18dp"
-                    android:layout_marginTop="16dp"/>
+                    android:text="@string/Less"
+                    android:textColor="@color/colorGreyDarker" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="84dp"
                     android:text="@string/Powered"
                     android:textAlignment="center"
-                    android:layout_marginTop="84dp"
-                    android:textColor="@color/colorGrey"
-                    />
+                    android:textColor="@color/colorGrey" />
 
             </LinearLayout>
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_scrollFlags="enterAlways"

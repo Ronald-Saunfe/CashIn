@@ -109,7 +109,6 @@
                                 android:layoutDirection="rtl"
                                 android:gravity="right|center_vertical"
                                 android:textAlignment="gravity" />
-
                         </RadioGroup>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

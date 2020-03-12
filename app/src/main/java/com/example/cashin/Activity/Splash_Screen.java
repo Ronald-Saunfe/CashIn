@@ -69,6 +69,7 @@ public class Splash_Screen extends AppCompatActivity{
 
 
         final Intent i=new Intent(this, Entrance_Page.class);
+        Animation anim=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
 
         Thread timer=new Thread(){
             @Override

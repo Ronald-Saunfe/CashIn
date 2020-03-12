@@ -19,9 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.cashin.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
@@ -43,22 +40,13 @@ public class ResetPassFragment extends Fragment {
     ProgressBar progressBar;
     String email;
     TextView error;
-    private FirebaseAuth auth;
 
     public ResetPassFragment() {
         // Required empty public constructor
     }
 
 
-    // TODO: Rename and change types and number of parameters
-    public static ResetPassFragment newInstance(String param1, String param2) {
-        ResetPassFragment fragment = new ResetPassFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,10 +66,6 @@ public class ResetPassFragment extends Fragment {
         reset=(Button) view.findViewById(R.id.Update_new_pass);
         progressBar=(ProgressBar) view.findViewById(R.id.progressBarUpdate);
         error=(TextView) view.findViewById(R.id.Error_Reset);
-
-        auth = FirebaseAuth.getInstance();
-
-
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,22 +82,6 @@ public class ResetPassFragment extends Fragment {
 
 
                 progressBar.setVisibility(View.VISIBLE);
-                auth.sendPasswordResetEmail(email)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    LoginFragment newfrag=new LoginFragment();
-                                    FragmentTransaction ft= Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
-                                    ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
-                                    error.setText("Password reset succefully!.\nCheck your email we have sent ");
-
-                                } else {
-                                    showDialog();
-                                }
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        });
             }
         });
 

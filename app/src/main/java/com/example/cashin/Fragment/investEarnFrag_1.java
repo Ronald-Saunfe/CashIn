@@ -20,9 +20,8 @@ import com.example.cashin.Activity.InvestEarn;
 import com.example.cashin.Activity.Navigation_Main;
 import com.example.cashin.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
+
 public class investEarnFrag_1 extends Fragment {
     //navigation btn for next and skip
     private Button btnNextIEf;

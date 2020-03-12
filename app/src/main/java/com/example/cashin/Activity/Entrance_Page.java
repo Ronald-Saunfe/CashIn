@@ -41,7 +41,7 @@ public class Entrance_Page extends AppCompatActivity
 
         if(fragment!=null){
             FragmentManager fragmentManager=getSupportFragmentManager();
-            fragmentManager.beginTransaction().setTransition(R.anim.fade_in).replace(R.id.frame_layout,fragment).commit();
+            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.frame_layout,fragment).commit();
         }
 
     }

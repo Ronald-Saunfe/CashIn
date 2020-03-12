@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:text="Cash In"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoIntro" />
@@ -39,7 +39,7 @@
         android:alpha="1"
         android:shadowColor="#2196F3"
         android:text="Earn from your investment."
-        android:textSize="8sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleIntro" />
