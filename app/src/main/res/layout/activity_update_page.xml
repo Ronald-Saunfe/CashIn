@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.UpdatePage">
+
+    <ImageView
+        android:id="@+id/imgUpdate1"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginLeft="32dp"
+        android:src="@mipmap/logo_foreground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Available"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/imgUpdate1"
+        app:layout_constraintTop_toBottomOf="@+id/imgUpdate1" />
+
+    <TextView
+        android:id="@+id/txtUpdate1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New version is available on PlayStore"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/imgUpdate1"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="150dp"
+        android:layout_height="38dp"
+        android:background="@drawable/my_btn_"
+        android:text="UPDATE"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:transitionName="btnLogIn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdate1"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="64dp"/>
+
+    <Button
+        android:id="@+id/btnNotNow"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:clickable="true"
+        android:text="May be later"
+        android:textColor="@color/colorAccent"
+        android:textSize="13sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/btnUpdate"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

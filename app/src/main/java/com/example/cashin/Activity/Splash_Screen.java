@@ -4,18 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.cashin.BuildConfig;
 import com.example.cashin.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Splash_Screen extends AppCompatActivity{
 
@@ -74,16 +88,66 @@ public class Splash_Screen extends AppCompatActivity{
         Thread timer=new Thread(){
             @Override
             public void run() {
-                try{
-                    sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                finally {
-                    startActivity(i);
-                    finish();
-                }
+                //check for updates
+                OkHttpClient client = new OkHttpClient();
 
+                Request request = new Request.Builder()
+                        .url("https://us-central1-cashin-270220.cloudfunctions.net/Check_Updates")
+                        .build();
+
+                client.newCall(request).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+                        call.cancel();
+
+                        Splash_Screen.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                    
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                        final String myResponse = response.body().string();
+
+                        Splash_Screen.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    //convertion of response to json to fetch value
+                                    JSONObject jsonObj = new JSONObject(myResponse);
+                                    String name = jsonObj.getString("versionCode");
+                                    JSONObject jsonObj1 = new JSONObject(name);
+                                    String name2 = jsonObj1.getString("VersionCode");
+                                    float versionCode=Float.parseFloat(name2);
+
+                                    //get the versionCode
+                                    //check if the app is upto date
+                                    float AppversionCode = BuildConfig.VERSION_CODE;
+                                    if (versionCode != AppversionCode)
+                                    {
+                                        //start the update activity
+                                        startActivity(new Intent(getApplicationContext(),UpdatePage.class));
+                                    }
+                                    else
+                                    {
+                                        startActivity(i);
+                                        finish();
+                                    }
+
+                                }catch (JSONException err){
+                                    Log.d("Error", err.toString());
+                                    Toast.makeText(getApplicationContext(),err.toString(),Toast.LENGTH_SHORT).show();
+                                }
+
+
+                            }
+                        });
+                    }
+                });
             }
         };
         timer.start();

@@ -19,11 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".Activity.Withdraw"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Activity.UpdatePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".Activity.Withdraw"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.profilePage"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activity.purchaseInvestment"
             android:theme="@style/AppTheme.NoActionBar" />
