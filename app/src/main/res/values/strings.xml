@@ -68,6 +68,7 @@
     <string name="Powered1">©Powered by Awwads Cash In Software</string>
 
     <string name="Balance">0</string>
+    <string name="updateUrl">https://us-central1-cashin-270220.cloudfunctions.net/Check_Updates</string>
 
 
 </resources>

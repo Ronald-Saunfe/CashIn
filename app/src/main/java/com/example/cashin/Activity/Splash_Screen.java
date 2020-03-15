@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.cashin.BuildConfig;
 import com.example.cashin.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -92,7 +94,7 @@ public class Splash_Screen extends AppCompatActivity{
                 OkHttpClient client = new OkHttpClient();
 
                 Request request = new Request.Builder()
-                        .url("https://us-central1-cashin-270220.cloudfunctions.net/Check_Updates")
+                        .url(getString(R.string.updateUrl))
                         .build();
 
                 client.newCall(request).enqueue(new Callback() {
@@ -103,7 +105,22 @@ public class Splash_Screen extends AppCompatActivity{
                         Splash_Screen.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_SHORT).show();
+                                progBr.setVisibility(View.INVISIBLE);
+                                Snackbar snackbar = Snackbar.make(findViewById(R.id.rootLayout), "Experienced an error while loading data...",
+                                        Snackbar.LENGTH_INDEFINITE);
+                                snackbar.setAction("RETRY", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        startActivity(new Intent(getApplicationContext(), Splash_Screen.class));
+                                    }
+                                });
+                                snackbar.setActionTextColor(Color.parseColor("#ffffff"));
+
+                                View snackbarView = snackbar.getView();
+                                snackbarView.setBackgroundColor(Color.parseColor("#003c8f"));
+
+                                snackbar.show();
+
                             }
                         });
                     }
