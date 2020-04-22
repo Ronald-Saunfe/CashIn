@@ -19,6 +19,7 @@
     <string name="Messages">Messages</string>
     <string name="WC">Withdraw Cash</string>
     <string name="TM">Terms and Conditions</string>
+    <string name="AgreeTM">I agree with the Terms and Conditions</string>
     <string name="H">Help</string>
     <string name="More">More</string>
     <string name="Less">Less</string>
@@ -70,5 +71,11 @@
     <string name="Balance">0</string>
     <string name="updateUrl">https://us-central1-cashin-270220.cloudfunctions.net/Check_Updates</string>
 
+    <string name="profile">Profile</string>
+    <string name="Message">Message</string>
+    <string name="MR">My referee</string>
+    <string name="BI">Broadcast investment</string>
+    <string name="TC">Terms and condition</string>
+    <string name="LO">Log out</string>
 
 </resources>

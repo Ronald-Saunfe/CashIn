@@ -6,12 +6,10 @@
 
     <dist:module dist:instant="true" />
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,36 +19,52 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".Activity.UpdatePage"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <service
+            android:name=".Service.MyFirebaseInstanceIDService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity android:name=".Activity.peopleInvestmentCheckout" />
+        <activity android:name=".Activity.Messages" />
+        <activity android:name=".Activity.myReferee" />
+        <activity android:name=".setReferee" />
+        <activity android:name=".Messages" />
+        <activity android:name=".Activity.myInvestments" />
         <activity
-            android:name=".Activity.Withdraw"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.profilePage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.purchaseInvestment"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.InvestEarn"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Entrance_Page"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Activity.Splash_Screen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="com.example.cashin.braintree" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.termsCondition" />
+        <activity android:name=".Activity.UpdatePage" />
+        <activity android:name=".Activity.Withdraw" />
+        <activity android:name=".Activity.profilePage" />
+        <activity android:name=".Activity.purchaseInvestment" />
+        <activity android:name=".Activity.InvestEarn" />
+        <activity android:name=".Activity.Entrance_Page" />
+        <activity android:name=".Activity.Navigation_Main" />
+        <activity android:name=".Activity.Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity.Navigation_Main"
-            android:theme="@style/AppTheme.NoActionBar" />
 
+        <service
+            android:name=".Service.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <service
             android:name=".Service.clientServer"
             android:enabled="true"

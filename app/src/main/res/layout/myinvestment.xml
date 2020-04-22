@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginRight="16dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginLeft="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/cashinbackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/menubtn">
+            <TextView
+                android:id="@+id/myI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:layout_marginLeft="8dp"
+                android:layout_gravity="left" />
+            <TextView
+                android:id="@+id/myInvPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD 0.5"
+                android:layout_marginLeft="8dp"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:layout_gravity="left"/>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/myInvProftmade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="Profit made +0"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:id="@+id/myInvQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:text="Remaining 20"
+            android:textSize="12sp"
+            android:layout_gravity="left"/>
+
+        <TextView
+            android:id="@+id/myinvDateBought"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bought on March 22 2020"
+            android:textSize="12sp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_gravity="left"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:transitionName="btnRegEntranceshare"
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:textSize="12sp"
+                android:text="SHARE"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                app:icon="@drawable/ic_share_black_24dp"/>
+
+            <Button
+                android:transitionName="btnRegEntrance"
+                android:id="@+id/btnRefund"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="REFUND"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -8,95 +8,169 @@
     tools:context=".Fragment.investEarnFrag_1">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <androidx.recyclerview.widget.RecyclerView
+            android:scrollbars="vertical"
+            android:id="@+id/recycleVIE"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="63dp">
 
-        </androidx.core.widget.NestedScrollView>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:liftOnScroll="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+            android:fitsSystemWindows="true"
+            app:liftOnScroll="true">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbLogin"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@color/white"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/btnBackInvestEarn1"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="?attr/homeAsUpIndicator" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="32dp"
+                        android:gravity="center"
+                        android:text="Invest and Earn"
+                        android:textAlignment="gravity"
+                        android:textColor="@color/black"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+            </androidx.appcompat.widget.Toolbar>
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@color/activityBackground">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:background="@color/white">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <ImageButton
-                            android:id="@+id/btnBackInvestEarn1"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="?attr/homeAsUpIndicator"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:layout_gravity="center"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="Invest and Earn"
-                            android:layout_marginLeft="32dp"
-                            android:textAlignment="gravity"
-                            android:gravity="center"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"/>
-                    </LinearLayout>
-
-                </androidx.appcompat.widget.Toolbar>
+                android:layout_height="wrap_content"
+                android:background="@color/activityBackground"
+                android:fitsSystemWindows="true">
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="How much like to earn?"
-                    android:layout_gravity="bottom"
-                    android:textSize="12sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="71dp"/>
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="center_vertical"
+                    android:textAlignment="gravity"
+                    android:gravity="center_vertical|left"
+                    android:layout_marginLeft="71dp"
+                    android:text="How much would you like to earn?"
+                    android:textSize="14sp"
+                    />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:contentInsetStart="0dp"
+            app:elevation="0dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorgrey95">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="8dp"
+                    app:layout_constraintLeft_toLeftOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="gravity"
+                        android:layout_marginTop="8dp"
+                        android:gravity="left|center_vertical"
+                        android:text="Select investment price"
+                        android:textColor="@color/colorgrey951"
+                        android:textSize="11sp"/>
+
+                    <Button
+                        android:id="@+id/btnSkipIEf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="ALTERNATIVE"
+                        android:textAlignment="gravity"
+                        android:gravity="left|center_vertical"
+                        app:icon="?attr/homeAsUpIndicator"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        android:enabled="false"
+                        android:textSize="10sp"
+                        app:iconTint="@color/colorGrey"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Go on invest"
+                        android:textAlignment="gravity"
+                        android:gravity="right|center_vertical"
+                        android:layout_marginTop="8dp"
+                        android:textColor="@color/colorgrey951"
+                        android:textSize="11sp"/>
+
+
+                    <Button
+                        android:id="@+id/btnNextIEf"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="NEXT"
+                        android:enabled="false"
+                        android:textSize="10sp"
+                        app:iconTint="@color/colorGrey"
+                        app:iconGravity="textEnd"
+                        app:icon="@drawable/ic_arrow_forward_black_24dp"
+                        style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                        />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/pbIE"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnSkipIEf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SKIP"
-            android:layout_weight=".1"
-            android:background="@null"/>
-
-        <Button
-            android:id="@+id/btnNextIEf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NEXT"
-            android:layout_weight=".1"/>
-
-    </LinearLayout>
+        app:layout_constraintEnd_toEndOf="@+id/coordinatorLayout2"
+        app:layout_constraintStart_toStartOf="@+id/coordinatorLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

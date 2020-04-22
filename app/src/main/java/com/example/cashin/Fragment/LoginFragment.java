@@ -1,25 +1,24 @@
 package com.example.cashin.Fragment;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -27,17 +26,46 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cashin.Activity.Navigation_Main;
+import com.example.cashin.GlobalVariable;
+import com.example.cashin.OkHTTPhandler;
 import com.example.cashin.R;
-public class LoginFragment extends Fragment {
+import com.example.cashin.ResponseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
+public class LoginFragment extends Fragment implements OkHTTPhandler.onresponseLinstener{
 
 
-    EditText myusername, myemail, mypassword, myconfirmpass;
+    EditText myemail, mypassword;
     Button Login,forgottenpass,NoAc;
-    TextView error;
     private ProgressBar progressBar;
     private ImageButton btnBackLogin;
+    private boolean onGoingLoading=false;
+    private TextInputLayout LLEmail,LLpassword;
+    private int RegBtnInitWidth;
+    private int Rertycount = 0;
+    private String token;
+    HashMap<String,String> payload = new HashMap<String,String>();
 
-    private OnFragmentInteractionListener mListener;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -53,7 +81,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        RegBtnInitWidth = Login.getWidth();
 
     }
 
@@ -62,6 +90,8 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        OkHTTPhandler.setOnResponseListener(this);
         myemail = (EditText) view.findViewById(R.id.LEmail);
         mypassword = (EditText) view.findViewById(R.id.Lpassword);
         progressBar = (ProgressBar) view.findViewById(R.id.progressBarlogin);
@@ -69,99 +99,189 @@ public class LoginFragment extends Fragment {
         NoAc = (Button) view.findViewById(R.id.donthaveac);
         forgottenpass=(Button) view.findViewById(R.id.forgottenpass);
 
+        LLpassword = view.findViewById(R.id.LLpassword);
+        LLEmail= view.findViewById(R.id.LLEmail);
 
         myemail = (EditText) view.findViewById(R.id.LEmail);
-        myemail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         //navigate back
         btnBackLogin = (ImageButton) view.findViewById(R.id.btnBackLogin);
         btnBackLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EntranceFragment newfrag= new EntranceFragment();
-                FragmentTransaction ft=getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.frame_layout,newfrag).addToBackStack(null).commit();
+                getActivity().onBackPressed();
             }
         });
         Login=(Button) view.findViewById(R.id.signin);
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final String email, password;
-                email = myemail.getText().toString();
-                password = mypassword.getText().toString();
-
-                if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)) {
-                    myemail.setError(getString(R.string.prompt_email));
-                    mypassword.setError(getString(R.string.prompt_password));
-                    return;
-                }
-                if (password.length() <6){
-                    Toast.makeText(getActivity(), "Password too short, enter minimum (6) characters!",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-
-
-
+                login();
             }
         });
-
-
-
         return view;
     }
 
-    public interface MyInterface{
-
-        public void setResult(String s);
+    private void AnimateRegBtn(){
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Login.setText("");
+                Login.setEnabled(false);
+                Login.setEnabled(false);
+                onGoingLoading = true;
+                //animate the register account button to display loading progress
+                ValueAnimator valueAnimator = ValueAnimator.ofInt(RegBtnInitWidth, 150);
+                valueAnimator.setInterpolator(new AnticipateOvershootInterpolator()); // increase the speed first and then decrease
+                valueAnimator.setDuration(1000);
+                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int val = (Integer) animation.getAnimatedValue();
+                        ViewGroup.LayoutParams layoutParams = Login.getLayoutParams();
+                        layoutParams.width = val;
+                        Login.setLayoutParams(layoutParams);
+                    }
+                });
+                valueAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        progressBar.setVisibility(View.VISIBLE);
+                    }
+                });
+                valueAnimator.start();
+            }
+        });
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    private void AnimateRegBtnRev(){
+        getActivity().runOnUiThread(new Runnable(){
+            @Override
+            public void run(){
+                progressBar.setVisibility(View.INVISIBLE);
+                //animate the register account button to display loading progress
+                ValueAnimator valueAnimator = ValueAnimator.ofInt(150, RegBtnInitWidth);
+                valueAnimator.setInterpolator(new AnticipateOvershootInterpolator()); // increase the speed first and then decrease
+                valueAnimator.setDuration(1000);
+                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int val = (Integer) animation.getAnimatedValue();
+                        ViewGroup.LayoutParams layoutParams = Login.getLayoutParams();
+                        layoutParams.width = val;
+                        Login.setLayoutParams(layoutParams);
+                    }
+                });
+
+                valueAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation)
+                    {
+                        Login.setText("SIGN IN");
+                        Login.setEnabled(true);
+                        Login.setEnabled(true);
+                        onGoingLoading=false;
+                    }
+                });
+                valueAnimator.start();
+            }});
+
+    }
+
+    private void login(){
+        AnimateRegBtn();
+        final String email, password;
+        email = myemail.getText().toString();
+        password = mypassword.getText().toString();
+
+        LLpassword.setError(null);
+        LLEmail.setError(null);
+
+        payload.put("email",email);
+        payload.put("password",password);
+        OkHTTPhandler.makepayload(payload,
+                "https://us-central1-cashin-270220.cloudfunctions.net/Login",
+                0,
+                progressBar,
+                null,
+                this);
+    }
+
+    private void getTokenFCM(){
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Intent i = new Intent(getContext(), Navigation_Main.class);
+                            startActivity(i);
+                            return;
+                        }
+                        // Get new Instance ID token
+                        token = task.getResult().getToken();
+                        Rertycount=0;
+                        updateTokenFCM();
+                    }
+                });
+    }
+
+    private void updateTokenFCM(){
+        final String email, password;
+        email = myemail.getText().toString();
+        password = mypassword.getText().toString();
+
+        LLpassword.setError(null);
+        LLEmail.setError(null);
+        payload.clear();
+        payload.put("email",GlobalVariable.GlobEmail);
+        payload.put("token",token);
+        OkHTTPhandler.makepayload(payload,
+                "https://us-central1-cashin-270220.cloudfunctions.net/UpdateFCMToken",
+                1,
+                progressBar,
+                null,
+                this);
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public void onResponse(JSONObject response, int id) {
+        if (id==0){
+            try {
+                String code = response.getString("code");
+
+                final String Cod = code;
+                final String username = response.getString("Username");
+                getActivity().runOnUiThread(new Runnable(){
+                    @Override
+                    public void run(){
+                        if (Cod.equals("100")){
+                            if (onGoingLoading==true){AnimateRegBtnRev();}
+                            LLpassword.setError("Password does not match");
+                        }
+                        else if(Cod.equals("101")){
+                            if (onGoingLoading==true){AnimateRegBtnRev();}
+                            LLEmail.setError("Email already exists");
+                        }
+                        else if(Cod.equals("200")){
+                            GlobalVariable.GlobUsername = username;
+                            GlobalVariable.GlobEmail=  myemail.getText().toString();
+                            getTokenFCM();
+
+                        }
+                    }
+                });
+            }
+            catch (JSONException e){}
         }
-    }
+        else if(id==1){
+            getActivity().runOnUiThread(new Runnable(){
+                @Override
+                public void run(){
+                    Intent i = new Intent(getContext(), Navigation_Main.class);
+                    startActivity(i);
+                }
+            });
+        }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-
-        void onFragmentInteraction(Uri uri);
-    }
-
-    private void updateUI() {
     }
 }

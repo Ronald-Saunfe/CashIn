@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootLayout">
+    android:id="@+id/constSplashScreen"
+    android:background="@drawable/cashinbackground">
 
     <ImageView
         android:id="@+id/logoIntro"
@@ -26,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Cash In"
         android:textColor="@color/colorAccent"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logoIntro" />
@@ -35,14 +36,12 @@
         android:id="@+id/subtitleIntro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:alpha="1"
-        android:shadowColor="#2196F3"
-        android:text="Earn from your investment."
-        android:textSize="16sp"
+        android:text="Diamond"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleIntro" />
+        app:layout_constraintTop_toBottomOf="@id/titleIntro"/>
 
     <ProgressBar
         android:id="@+id/progressBarIntro"

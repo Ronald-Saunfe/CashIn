@@ -4,6 +4,12 @@ apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
+
+    //Exclude META-INF/LICENSE for JSON parser
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+    }
+
     defaultConfig {
         applicationId "com.example.cashin"
         minSdkVersion 21
@@ -41,17 +47,41 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'me.spark:submitbutton:1.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation "com.google.android.gms:play-services-location:15.0.1"
+    //used for image picker
+    implementation 'gun0912.ted:tedbottompicker:2.0.1'
+    implementation 'gun0912.ted:tedpermission:2.2.3'
+    implementation 'gun0912.ted:tedpermission-rx2:2.2.3'
+
     //use for http requests
     implementation("com.squareup.okhttp3:okhttp:4.4.0")
+
+    //JSON parsing
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
+
+    //braintee for paypal android sdk >16
+    implementation 'com.braintreepayments.api:braintree:2.+'
+
+    //recycleview items animator
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
+    //material design
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+    //navigation drawer
+    implementation "com.mikepenz:materialdrawer:6.1.2"
+
+    //setup firebase messaging
+    implementation 'com.google.firebase:firebase-messaging:20.1.5'
+
 }

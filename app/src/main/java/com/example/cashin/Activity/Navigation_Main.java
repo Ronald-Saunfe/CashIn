@@ -60,45 +60,6 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu_item, menu);
-        return true;
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (drawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        switch (item.getItemId()) {
-            case R.id.About_Cashin:
-                Toast toast= Toast.makeText(getApplicationContext(),"About Cash in",Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL,0,0);
-                toast.show();
-                showAbout();
-                return true;
-            case R.id.settings:
-                Toast.makeText(Navigation_Main.this,"coming soon",Toast.LENGTH_LONG).show();
-                return true;
-
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    private void showAbout() {
-        new AlertDialog.Builder(this)
-                .setTitle("About Cash in")
-                .setMessage("Cash in helps you to earn more.\n\n\n Version 1.0.1")
-                .setCancelable(false)
-                .setNegativeButton(android.R.string.yes, null)
-                .create().show();
-    }
-
     boolean doubleBackToExitPressedOnce = false;
     @Override
     public void onBackPressed() {
@@ -123,7 +84,6 @@ public class Navigation_Main extends AppCompatActivity implements HomeFragment.O
 
     public interface OnFragmentCommunicationListener {
         void onNameChange(String name);
-
         void onEmailChange(String email);
 
     }

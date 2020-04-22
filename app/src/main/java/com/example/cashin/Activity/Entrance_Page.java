@@ -1,53 +1,49 @@
 package com.example.cashin.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.os.Bundle;
 
 import com.example.cashin.Fragment.EntranceFragment;
-import com.example.cashin.Fragment.HomeFragment;
 import com.example.cashin.Fragment.LoginFragment;
-import com.example.cashin.Fragment.ResetPassFragment;
 import com.example.cashin.Fragment.SignUpFragment;
 import com.example.cashin.R;
 
-public class Entrance_Page extends AppCompatActivity
-        implements LoginFragment.OnFragmentInteractionListener,
-        SignUpFragment.OnFragmentInteractionListener,
-        ResetPassFragment.OnFragmentInteractionListener,
-        HomeFragment.OnFragmentInteractionListener{
 
-    Class fragmentclass;
-    public static Fragment fragment;
+public class Entrance_Page extends AppCompatActivity implements EntranceFragment.onNavigateClick {
 
-    @SuppressLint("WrongConstant")
+    private FragmentManager fm;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance__page);
 
+        EntranceFragment.setonNavigateClick(this);
 
-        ///Adding or Inflating myfragment to the layout............>>>
-        fragmentclass= EntranceFragment.class;
-        try {
-            fragment=(Fragment) fragmentclass.newInstance();
-        } catch (IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }
-
-        if(fragment!=null){
-            FragmentManager fragmentManager=getSupportFragmentManager();
-            fragmentManager.beginTransaction().setTransition(R.anim.mytransation).replace(R.id.frame_layout,fragment).commit();
-        }
-
+        //add the entrance fragment
+        Fragment fragment = new EntranceFragment();
+        fm = getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.add(R.id.fmlEmtrance, fragment);
+        transaction.commit();
     }
+
     @Override
-    public void onFragmentInteraction(Uri uri) {
-
+    public void onLogin() {
+        Fragment fragment = new LoginFragment();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.fmlEmtrance, fragment).addToBackStack(null).commit();
     }
 
+    @Override
+    public void onRegistration() {
+        Fragment fragment = new SignUpFragment();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.fmlEmtrance, fragment).addToBackStack(null).commit();
+    }
 }

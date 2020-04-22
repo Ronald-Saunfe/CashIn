@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/MnProf"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Profile" />
+        <item
+            android:id="@+id/MnMessage"
+            android:icon="@drawable/ic_message_black_24dp"
+            android:title="Message" />
+        <item
+            android:id="@+id/MnRef"
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="My referee" />
+        <item
+            android:id="@+id/MnBI"
+            android:icon="@drawable/ic_settings_input_antenna_black_24dp"
+            android:title="Broadcast investment" />
+        <item
+            android:id="@+id/MnTC"
+            android:icon="@drawable/ic_assignment_black_24dp"
+            android:title="Terms and Conditions" />
+        <item
+            android:id="@+id/MnLO"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="Log out" />
+    </group>
+</menu>
